@@ -28,8 +28,9 @@
         $.getJSON("http://api.geonames.org/timezoneJSON?lat="+lat+"&lng="+lng+"&username=demo",
         function(data) {
             offsetVals[index] = data.dstOffset;
-            if (offsetVals[0] !== null && offsetVals[1] !== null)
-                $('#tztext').text(offsetVals)
+            if (offsetVals[0] !== null && offsetVals[1] !== null) {
+                $('#tztext').text(offsetVals[1] - offsetVals[0]);
+                }
         });
     };
 
@@ -41,7 +42,7 @@
                 atxt = $('#pointa').val();
                 btxt = $('#pointb').val();
                 getLatLng(atxt, btxt);
-            }, 200);
+            }, 500);
         });
 
         $('#pointb').keyup(function() {
@@ -50,7 +51,7 @@
                 atxt = $('#pointa').val();
                 btxt = $('#pointb').val();
                 getLatLng(atxt, btxt);
-            }, 200);
+            }, 500);
         });
     });
 
