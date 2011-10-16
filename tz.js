@@ -1,5 +1,4 @@
-(function() { var geocoder; var searchtimeout; var offsetVals = [null, null];
-
+(function() { var geocoder; var searchtimeout; var setTime; var offsetVals = [null, null];
     var getLatLng = function(addr1, addr2) {
         if (!addr1 || !addr2) return;
 
@@ -29,22 +28,28 @@
         function(data) {
             offsetVals[index] = data.dstOffset;
             if (offsetVals[0] !== null && offsetVals[1] !== null) {
-                $('#tztext').text(offsetVals[1] - offsetVals[0]);
-                }
+              offset = offsetVals[1] - offsetVals[0]
+              now = new Date()
+              setTime(now, $(".time-container:first .time"))
+              now.setHours((now.getHours() + 24 + offset) % 24)
+              setTime(now, $(".time-container:last .time"))
+              if (offset > 0) {
+                offset = "+" + offset
+              }
+              $('#tztext').text(offset + " hours");
+            }
         });
     };
 
+    var setTime = function(time, elem) {
+      meridiem = time.getHours() <= 12 ? "AM" : "PM";
+      hour = time.getHours() % 12;
+      minute = time.getMinutes() < 10 ? "0" + time.getMinutes() : time.getMinutes();
+      $(elem).text(hour + ":" + minute + " " + meridiem);
+    }
+
     $(document).ready(function() {
-        now = new Date();
-        if (now.getHours() <= 12) {
-          hour = now.getHours();
-          meridiem = "AM";
-        } else {
-          hour = now.getHours() - 12;
-          meridiem = "PM";
-        }
-        minute = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()
-        $(".time").text(hour + ":" + minute + " " + meridiem)
+        setTime(new Date(), $(".time"));
 
         geocoder = new google.maps.Geocoder();
         $('#pointa').keyup(function() {
