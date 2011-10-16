@@ -43,7 +43,8 @@
           hour = now.getHours() - 12;
           meridiem = "PM";
         }
-        $(".time").text(hour + ":" + now.getMinutes() + " " + meridiem)
+        minute = now.getMinutes() < 10 ? "0" + now.getMinutes() : now.getMinutes()
+        $(".time").text(hour + ":" + minute + " " + meridiem)
 
         geocoder = new google.maps.Geocoder();
         $('#pointa').keyup(function() {
