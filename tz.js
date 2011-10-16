@@ -35,6 +35,16 @@
     };
 
     $(document).ready(function() {
+        now = new Date();
+        if (now.getHours() <= 12) {
+          hour = now.getHours();
+          meridiem = "AM";
+        } else {
+          hour = now.getHours() - 12;
+          meridiem = "PM";
+        }
+        $(".time").text(hour + ":" + now.getMinutes() + " " + meridiem)
+
         geocoder = new google.maps.Geocoder();
         $('#pointa').keyup(function() {
             window.clearTimeout(searchtimeout);
