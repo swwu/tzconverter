@@ -1,18 +1,37 @@
 <html>
 <head>
-  <title>Stypi</title>
+  <title>Easytime</title>
   <meta charset='utf-8' />
   <meta content='Cuz Kevin fails at math' name='description' />
+  <link href='http://fonts.googleapis.com/css?family=Poly' rel='stylesheet' type='text/css'>
   <link href="tz.css" media="screen" rel="stylesheet" type="text/css" />
 </head>
 
 <body>
-  <input type='text' name='pointa' id='pointa'/>
-  <input type='text' name='pointb' id='pointb' />
-  <br>
-  I THINK YOU MEAN <span id='loca'></span> AND <span id='locb'></span>
-  <div id='tztext'>TYPE SOME SHIT IN YO</div>
+  <div id="content-container">
+    <h1>Easytime</h1>
+    <h3>Simply type in a <b>timezone</b> or <b>city</b> in both boxes to get started.</h3>
+    <div class="input-container">
+      <p class="example">e.g. PST or New York</p>
+      <input type='text' name='pointa' id='pointa' />
+    </div>
+    <div class="input-container last">
+      <p class="example">e.g. GMT or Tokyo</p>
+      <input type='text' name='pointb' id='pointb' />
+    </div>
 
+    <div id="result-container">
+      <div class="time-container">
+        <div class="time">3:45 PM</div>
+        <div id="loca" class="location"></div>
+      </div>
+      <div class="offset-container"><div id='tztext'>+0 hours</div></div>
+      <div class="time-container">
+        <div class="time">12:45 PM</div>
+        <div id="locb" class="location"></div>
+      </div>
+    </div>
+  </div>
 
   <script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.6.2/jquery.min.js"></script>
   <script type="text/javascript" src="http://maps.googleapis.com/maps/api/js?sensor=false"></script>
