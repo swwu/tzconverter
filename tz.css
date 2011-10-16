@@ -42,6 +42,7 @@ body {
 }
 
 .input-container input {
+  background-color: #fcfcfc;
   border: 2px solid #bdcad7;
   border-radius: 3px;
   color: #879eb6;
